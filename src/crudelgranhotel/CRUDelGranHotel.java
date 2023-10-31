@@ -22,9 +22,9 @@ public class CRUDelGranHotel {
 //       
      //   habitacion hab =new habitacion(101,tipoh,1,true);
         
-        habitacionData hd =new habitacionData();
-       habitacion h =hd.buscarHabitacion(102);
-       System.out.println(h);
+        //habitacionData hd =new habitacionData();
+      // habitacion h =hd.buscarHabitacion(102);
+       //System.out.println(h);
 //        
 //        huesped huespedX =new huesped(3403665, "Jose Lopez", "Direccion", "Correo", "Celular", true);
 //        

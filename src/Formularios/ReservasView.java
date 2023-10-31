@@ -344,9 +344,9 @@ public void inicializoTablas(){
         //obtengo N de habitacion disponible de LISTA
        // if()
         int numeroH=TbHabitaciones.getSelectedRow();
-        int habitacionR =(int) formatoTablaHab.getValueAt(numeroH, 0);
-        System.out.println("habitR num "+habitacionR);
-        this.habitacionR=habData.buscarHabitacion(102);
+        int habi =(int) formatoTablaHab.getValueAt(numeroH, 0);
+        System.out.println("habitR num "+habi);
+        this.habitacionR=habData.buscarHabitacionR(habi);
 
         // AGREGO HUESPED POR DNI
         

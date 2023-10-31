@@ -149,6 +149,45 @@ public class habitacionData {
         }
     return hab;
     }
+    
+     public habitacion buscarHabitacionR(int numero)    {
+        habitacion hab=new habitacion();
+        String sql="SELECT * FROM habitacion WHERE numero=?";
+        try{
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, numero);
+            System.out.println(numero);
+            ResultSet rs=ps.executeQuery();
+            if (rs.next()){
+               
+                
+                tipodehabitacion tipoh =new tipodehabitacion();
+                tipoh.setCodigo(rs.getInt("Codigo"));
+                tipoh.setPrecio(rs.getInt("Precio"));
+                tipoh.setCantcamas(rs.getInt("Cantidadcamas"));
+                tipoh.setTipo(rs.getString("Tipo"));
+                tipoh.setTipocamas(rs.getString("Tipocamas"));
+                tipoh.setCapacidad(rs.getInt("Capacidad"));
+                
+                hab.setNumero(numero);
+                hab.setTipohabitacion(tipoh);
+                hab.setPiso(rs.getInt(3));
+                hab.setEstado(rs.getBoolean(4));
+                return hab;
+                
+            
+             
+            }else { JOptionPane.showMessageDialog(null,"Habitación no encontrada");
+            
+            }
+                
+        }catch (SQLException ex){
+           // System.out.println(ex.getMessage()+ex.getSQLState()+ex.getErrorCode()+ex.getLocalizedMessage()+ex.getStackTrace().toString()+ex.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error buscando habitacion");
+            
+        }
+    return hab;
+    }
         
     public ArrayList<habitacion> listarHabitacionesTipo(int codigoTipoh){
         String sql="SELECT * FROM habitacion JOIN tipodehabitacion ON (habitacion.Tipohabitacion=tipodehabitacion.Codigo) WHERE habitacion.Tipohabitacion=?";
