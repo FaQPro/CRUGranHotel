@@ -26,9 +26,6 @@ public class Menu extends javax.swing.JFrame {
         buscarR = new javax.swing.JMenuItem();
         Mconsultas = new javax.swing.JMenu();
         usuarios = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,15 +94,6 @@ public class Menu extends javax.swing.JFrame {
 
         usuarios.setText("usuarios");
         Mconsultas.add(usuarios);
-
-        jMenuItem10.setText("jMenuItem10");
-        Mconsultas.add(jMenuItem10);
-
-        jMenuItem11.setText("jMenuItem11");
-        Mconsultas.add(jMenuItem11);
-
-        jMenuItem12.setText("jMenuItem12");
-        Mconsultas.add(jMenuItem12);
 
         jMenuBar1.add(Mconsultas);
 
@@ -209,9 +197,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem buscarR;
     private javax.swing.JMenuItem cargarR;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem lista;
     private javax.swing.JMenuItem usuarios;
     private javax.swing.JMenuItem verH;

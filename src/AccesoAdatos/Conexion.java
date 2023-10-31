@@ -14,9 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
 
-    public static final String URL = "jdbc:mariadb://us-phx-web776.main-hosting.eu:3306/u351249038_elgranhotel";
-    public static final String USER = "u351249038_CRUD2023";
-    public static final String PASS = "*@gLGC6/Sd";
+//    public static final String URL = "jdbc:mariadb://us-phx-web776.main-hosting.eu:3306/u351249038_elgranhotel";
+//    public static final String USER = "u351249038_CRUD2023";
+//    public static final String PASS = "*@gLGC6/Sd";
+    
+    public static final String URL = "jdbc:mysql://localhost:3306/bdelgranhotel";
+    public static final String USER = "root";
+    public static final String PASS = "";
     public Connection con=null;
     
     PreparedStatement ps;
@@ -27,7 +31,7 @@ public class Conexion {
         Connection conexion=null;
         try{
             
-            Class.forName("org.mariadb.jdbc.Driver"); //"com.mysql.jdbc.Driver"
+            Class.forName("org.mariadb.jdbc.Driver"); //"org.mariadb.jdbc.Drivercom.mysql.jdbc.Driver"
             conexion = (Connection) DriverManager.getConnection(URL, USER, PASS);
                     //show VARIABLES WHERE variable_name IN ("hostname","port");
                 //JOptionPane.showMessageDialog(null, "Conexión Exitosa");

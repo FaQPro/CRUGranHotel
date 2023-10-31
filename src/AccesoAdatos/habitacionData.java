@@ -26,13 +26,18 @@ public class habitacionData {
         String sql="INSERT INTO habitacion (Numero, TipoHabitacion, Piso, Estado) VALUES(?,?,?,?)";
         
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps=con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1,habit.getNumero());
             ps.setInt(2,habit.getTipohabitacion().getCodigo());
             ps.setInt(3,habit.getPiso());
             ps.setBoolean(4,habit.isEstado());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha guardado la habitacion nro "+habit.getNumero());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Se ha guardado la habitacion nro "+habit.getNumero());
+                habit.setNumero(rs.getInt(1));
+            }
+            
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al guardar habitacion ");
@@ -149,8 +154,8 @@ public class habitacionData {
         }
     return hab;
     }
-    
-     public habitacion buscarHabitacionR(int numero)    {
+    /*
+     public  habitacion buscarHabitacionR(int numero)    {
         habitacion hab=new habitacion();
         String sql="SELECT * FROM habitacion WHERE numero=?";
         try{
@@ -188,7 +193,7 @@ public class habitacionData {
         }
     return hab;
     }
-        
+    */    
     public ArrayList<habitacion> listarHabitacionesTipo(int codigoTipoh){
         String sql="SELECT * FROM habitacion JOIN tipodehabitacion ON (habitacion.Tipohabitacion=tipodehabitacion.Codigo) WHERE habitacion.Tipohabitacion=?";
         tipoDeHabitacionData tipoHdata=new tipoDeHabitacionData();

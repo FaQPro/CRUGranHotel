@@ -44,6 +44,8 @@ public class reservaData {
         ps.setInt (5, reservaNueva.getPersonas());
        
         ps.setDouble(6,reservaNueva.getImporteTotal());
+        
+        ps.setBoolean(7, true);
     
         ps.executeUpdate();
     

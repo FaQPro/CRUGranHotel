@@ -77,21 +77,6 @@
                 <Property name="text" type="java.lang.String" value="usuarios"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem10"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem11"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem12"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

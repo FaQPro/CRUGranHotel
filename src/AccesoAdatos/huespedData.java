@@ -27,10 +27,8 @@ public class huespedData {
         System.out.println("conexion creada");
          }
 
-    public boolean guardarHuesped (huesped huespedA){
-        con=Conexion.getConnection();
-        System.out.println("conexion creada");
-        
+    public void guardarHuesped (huesped huespedA){
+      
     try {
             String sql ="INSERT  INTO `huesped` ( `Dni`, `Apellidoynom`, `Direccion`, `Correo`, `Celular`, `Estado`) VALUES(?,?,?,?,?,?)" ;
             ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -40,21 +38,17 @@ public class huespedData {
             ps.setString(4, huespedA.getCorreo());
             ps.setString(5, huespedA.getCelular());
             ps.setBoolean(6, huespedA.isEstado());
-
+            ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             
             if(rs.next()){
-                huespedA.setIdHuesped(rs.getInt("idHuesped"));
+                huespedA.setIdHuesped(rs.getInt(1));
                 JOptionPane.showMessageDialog(null,"Huesped Guardado correctamente");
-                return true;
-                
-            }else{
-                return false;
             }
         } 
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error guardar huesped "+ex);
-            return false;
+          
 
         }
 
@@ -153,16 +147,16 @@ public class huespedData {
        }  
     
      public huesped buscarporid(int idHuesped){
-            
-        try {
             huesped buscado= new huesped();
             String sql="SELECT * FROM huesped WHERE idHuesped =?";
+        try {
+            
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(0, idHuesped );
             ResultSet rs=ps.executeQuery();
              if (rs.next()) {
                
-                buscado.setIdHuesped(rs.getInt("idHuesped"));
+                buscado.setIdHuesped(idHuesped);
                 buscado.setDni(rs.getInt("Dni"));
                 buscado.setApellidoynom(rs.getString("Apellidoynom"));
                 buscado.setDireccion(rs.getString("Direccion"));
@@ -170,20 +164,18 @@ public class huespedData {
                 buscado.setCelular(rs.getString("Celular"));
                 buscado.setEstado(rs.getBoolean("Estado"));
                  ps.close();
-                return buscado;
-            
+  
             }else {
             JOptionPane.showMessageDialog(null, "No existe ese huesped ");
             ps.close();
-            return null;
-             
+
             } 
             
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error buscando el huesped");
         }
          
-        return null;    
+        return buscado;   
        }  
 /*
     public void guardarhuesped(huesped a){

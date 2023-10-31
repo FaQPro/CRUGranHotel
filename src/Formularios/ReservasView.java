@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ReservasView extends javax.swing.JInternalFrame {
     public static huesped guardarH;
+   
     public static double precio;
     public static double precioFinalF;
     DefaultTableModel formatoTablaTipos=new DefaultTableModel();
@@ -117,6 +118,7 @@ public void inicializoTablas(){
         TxdniH = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        Bsalir = new javax.swing.JButton();
 
         jLabel1.setText("Dias / Noches:");
 
@@ -222,6 +224,8 @@ public void inicializoTablas(){
 
         jLabel3.setText("DNI Huesped:");
 
+        Bsalir.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,7 +275,9 @@ public void inicializoTablas(){
                                         .addComponent(Spersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(3, 3, 3)))))
                         .addGap(39, 39, 39)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Bsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(41, 41, 41))
         );
@@ -304,7 +310,9 @@ public void inicializoTablas(){
                     .addComponent(Lprecio)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(BguardarR)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BguardarR)
+                    .addComponent(Bsalir))
                 .addGap(17, 17, 17))
         );
 
@@ -342,16 +350,15 @@ public void inicializoTablas(){
         personas = (int) Spersonas.getValue();
         
         //obtengo N de habitacion disponible de LISTA
-       // if()
         int numeroH=TbHabitaciones.getSelectedRow();
         int habi =(int) formatoTablaHab.getValueAt(numeroH, 0);
         System.out.println("habitR num "+habi);
-        this.habitacionR=habData.buscarHabitacionR(habi);
+        this.habitacionR=habData.buscarHabitacion(habi);
 
         // AGREGO HUESPED POR DNI
         
-        //int idH=guardarH.getIdHuesped();
-        //huesped h1 =new huesped();
+        int idH=guardarH.getIdHuesped();
+        huesped h1 =new huesped();
         //System.out.println("id huesped"+idH);
         
         //huespedR=hd.buscarporDni(34031678);
@@ -360,7 +367,7 @@ public void inicializoTablas(){
         System.out.println("huesp"+guardarH);
         reserva nuevaReserva = new reserva(this.habitacionR,guardarH, fechaChekIn, fechaChekOut, personas, preciofinal,true);
         // reservaData reserData = new reservaData();
-        // reserData.guardarReserva(nuevaReserva);
+        reserData.guardarReserva(nuevaReserva);
         //habitacion nrohabitacion, huesped idHuesped, Date FechaEntrada, Date FechaSalida, int personas, double ImporteTotal, boolean estado
         // reserData.guardarReserva(nuevaReserva);
 
@@ -403,6 +410,7 @@ public void inicializoTablas(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BagregarH;
     private javax.swing.JButton BguardarR;
+    private javax.swing.JButton Bsalir;
     private javax.swing.JButton BuscarH;
     private javax.swing.JLabel Lprecio;
     private javax.swing.JSpinner Sdias;

@@ -76,7 +76,10 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jButton1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="Bsalir" min="-2" pref="73" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -117,7 +120,10 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="20" max="32767" attributes="0"/>
-              <Component id="BguardarR" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="BguardarR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Bsalir" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -245,6 +251,11 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="DNI Huesped:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Bsalir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
     </Component>
   </SubComponents>
