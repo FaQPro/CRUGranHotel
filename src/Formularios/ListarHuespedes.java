@@ -13,13 +13,7 @@ public class ListarHuespedes extends javax.swing.JInternalFrame {
     public ListarHuespedes() {
         initComponents();
         
-        huesped huespedF =new huesped();
-        huespedData hd =new huespedData();
-        
-      
-        huespedF=hd.listarhuesped();
-        
-        Chuespedes.ad
+       
     }
     
     

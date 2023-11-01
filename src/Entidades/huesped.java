@@ -95,7 +95,7 @@ public class huesped {
 
     @Override
     public String toString() {
-        return Apellidoynom+" "+idHuesped;
+        return Apellidoynom;
     }
     
     

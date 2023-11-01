@@ -86,6 +86,11 @@ public class Menu extends javax.swing.JFrame {
         Mreserva.add(cargarR);
 
         buscarR.setText("buscar");
+        buscarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarRActionPerformed(evt);
+            }
+        });
         Mreserva.add(buscarR);
 
         jMenuBar1.add(Mreserva);
@@ -150,6 +155,15 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(vh);
         Escritorio.moveToFront(vh);
     }//GEN-LAST:event_cargarRActionPerformed
+
+    private void buscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarRActionPerformed
+       Escritorio.removeAll();
+        Escritorio.repaint();
+        ReservasBuscar vr=new ReservasBuscar();
+        vr.setVisible(true);
+        Escritorio.add(vr);
+        Escritorio.moveToFront(vr);
+    }//GEN-LAST:event_buscarRActionPerformed
 
     /**
      * @param args the command line arguments

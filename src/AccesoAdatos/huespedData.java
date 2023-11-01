@@ -98,20 +98,44 @@ public class huespedData {
     }
 
     public void eliminarhuesped(int idHuesped){
-        String sql="UPDATE huesped SET estado=0 Where idHuesped=?";
+        String sql="UPDATE huesped SET estado=0 WHERE idHuesped=?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, idHuesped);
-            ps.executeQuery();
-    
-            
-            
+            ps.executeUpdate();
+            rs = ps.getGeneratedKeys();
+            if(rs.next())
+                rs.getInt(1);
+                JOptionPane.showMessageDialog(null,"Huesped Eliminado correctamente");
+       
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error eliminando el huesped");
             
         }
     }
+    
+     public void eliminarHues(boolean estado){
+         
+        String sql="UPDATE huesped SET estado = 0 WHERE Estado = ?";
+        
+        try {
+            con.prepareStatement(sql);
+            ps.setBoolean(7, false);
+            
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            
+          if(rs.next()){
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el huesped");
+            }
+            ps.close();
+        
+        } catch (SQLException ex) {
+           System.err.println("error al intentar eliminar el huesped "+ex); 
+        }
+    }
+     
     public huesped buscarporDni(int Dni){
             
         try {

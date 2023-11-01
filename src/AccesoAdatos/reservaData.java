@@ -146,10 +146,36 @@ public reserva buscarresevaxfecha(LocalDate fecha){
         }
      
      return reserva;
-}   
+} 
+    
+  public void borrarReserva(boolean estado){
+        
+        try {
+           String sql = "UPDATE FROM reserva WHERE Estado = ?";
+           PreparedStatement ps;
+     
+            ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(7, false);
+    
+            ps.executeUpdate();
+    
+            ResultSet rs = ps.getGeneratedKeys();
+      
+        if(rs.next()){
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la reserva");
+            }
+            ps.close();
+        }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error al intentar eliminar la reserva");
+        }
+        
+    }  
+    
+    
 }
 
 
+   //DELETE FROM inscripcion WHERE idAlumno = ? and idMateria = ?
   
     /*
     public void guardarReserva(reserva reservaNueva){
