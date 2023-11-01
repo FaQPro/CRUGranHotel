@@ -53,7 +53,36 @@ public class huespedData {
         }
 
     }
-    
+    //int Dni,String Apellidoynom,String Direccion,String Correo,String Celular,boolean Estado,int idHuesped
+        public huesped modificarhuesped(huesped hues){
+        String sql="UPDATE huesped SET Dni=?, Apellidoynom=?, Direccion=?, Correo=?, Celular=?, Estado=? WHERE idHuesped=?";
+        try{
+            ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            
+            ps.setInt(1, hues.getDni());
+            ps.setString(2, hues.getApellidoynom());
+            ps.setString(3, hues.getDireccion());
+            ps.setString(4, hues.getCorreo());
+            ps.setString(5, hues.getCelular());
+            ps.setBoolean(6, hues.isEstado());
+            ps.setInt(7, hues.getIdHuesped());
+         
+            ps.executeUpdate();
+            rs= ps.getGeneratedKeys();
+            if (rs.next()) {
+                        hues.setIdHuesped(rs.getInt(1));
+            }
+           
+//            if(exito>0){
+//                JOptionPane.showMessageDialog(null,"Huesped modificado");
+//            }
+            return hues;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error modificando huesped");
+        }
+        return null;
+    }
+        
     public void listarhuespedes(){
         String sql="SELECT * FROM huesped";
         try {
@@ -76,39 +105,24 @@ public class huespedData {
         
     }
      
-    public void modificarhuesped(huesped hues){
-        String sql="UPDATE huesped SET Dni=?, Apellidoynom=?, Direccion=?, Correo=?, Celular=?, Estado=? WHERE idHuesped=?";
-        try{
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1, hues.getDni());
-            ps.setString(2, hues.getApellidoynom());
-            ps.setString(3, hues.getDireccion());
-            ps.setString(4, hues.getCorreo());
-            ps.setString(5, hues.getCelular());
-            ps.setBoolean(6, hues.isEstado());
-            ps.setInt(7, hues.getIdHuesped());
-            
-            ps.executeUpdate();
-           JOptionPane.showMessageDialog(null,"Huesped modificado");
-    
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error modificando huesped");
-        }
- 
-    }
+
 
     public void eliminarhuesped(int idHuesped){
+        
+        
         String sql="UPDATE huesped SET estado=0 WHERE idHuesped=?";
+        
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            ps=con.prepareStatement(sql);
             ps.setInt(1, idHuesped);
-            ps.executeUpdate();
-            rs = ps.getGeneratedKeys();
-            if(rs.next())
-                rs.getInt(1);
+            int exito=ps.executeUpdate();
+            
+            if(exito==1)
+                
+           
                 JOptionPane.showMessageDialog(null,"Huesped Eliminado correctamente");
        
-            
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error eliminando el huesped");
             

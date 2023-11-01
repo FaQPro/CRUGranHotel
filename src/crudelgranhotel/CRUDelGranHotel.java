@@ -26,7 +26,9 @@ public class CRUDelGranHotel {
       // habitacion h =hd.buscarHabitacion(102);
        //System.out.println(h);
 //        
-//        huesped huespedX =new huesped(3403665, "Jose Lopez", "Direccion", "Correo", "Celular", true);
+//        huesped huespedX =new huesped(86,3403665, "Jose del main", "Direccion", "Correo", "Celular", false);
+//        huespedData hd=new huespedData();
+//        hd.modificarhuesped(huespedX);
 //        
 //        reserva nuevareserva=new reserva(100,110, hab, huespedX, LocalDate.of(2023, 10, 20), LocalDate.of(2023, 10, 30), 2, 180.50, true);
 //        reservaData datare=new reservaData();

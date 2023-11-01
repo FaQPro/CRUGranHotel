@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
  * @author FacuPro
  */
 public class Huespedes extends javax.swing.JInternalFrame {
-        int id;
+        int id,estado;
+       
     public Huespedes() {
         initComponents();
     }
@@ -135,13 +136,15 @@ public class Huespedes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Bbuscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(65, 65, 65))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Bguardar)
-                                .addGap(30, 30, 30)
-                                .addComponent(Beditar))
-                            .addComponent(jButton1))
-                        .addGap(48, 48, 48)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Beditar)
+                                .addGap(32, 32, 32)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -257,29 +260,65 @@ public class Huespedes extends javax.swing.JInternalFrame {
     }
 
     private void BeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeditarActionPerformed
-         huesped huespedX=new huesped();
-         huespedData datosH= new huespedData();
          
-         Integer dni = Integer.parseInt(TxDni.getText());
+        //BOTON MODIFICAR
+         
+         huesped huespedA=new huesped();
+         huespedData datosH= new huespedData();
+    try{     
+        
+        Integer auxid= huespedA.getIdHuesped();
+        id= auxid;
+        Integer dni = Integer.parseInt(TxDni.getText());
          String nom = TxApellidoynom.getText();
          String dom=TxDomicilio.getText();
          String mail=TxCorreo.getText();
          String cel=TxCelular.getText();
-         if (nom.isEmpty()|| dom.isEmpty()||mail.isEmpty()||cel.isEmpty()) {
+            if (nom.isEmpty()|| dom.isEmpty()||mail.isEmpty()||cel.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no deje campos vacios ");
-            }else {
-              huespedX=datosH.buscarporDni(dni);
+            }
          Boolean estado=Cestado.isSelected();
-         huespedX.setEstado(false);
-         datosH.modificarhuesped(huespedX);
+           
+                huespedA.setIdHuesped(id);
+                huespedA.setDni(dni);
+                huespedA.setApellidoynom(nom);
+                huespedA.setDireccion(dom);
+                huespedA.setCorreo(mail);
+                huespedA.setCelular(cel);
+                //huespedA.setEstado(estado);    
+                datosH.modificarhuesped(huespedA);
+                System.out.println("huespedA"+huespedA);
+//            if(huespedA==null){
+                //datosH.guardarHuesped(huespedA);
+//            }else{ 
+//                huespedA.setIdHuesped(id);
+//                huespedA.setDni(dni);
+//                huespedA.setApellidoynom(nom);
+//                huespedA.setDireccion(dom);
+//                huespedA.setCorreo(mail);
+//                huespedA.setCelular(cel);
+                //huespedA.setEstado(estado);
+                //datosH.modificarhuesped(huespedA); 
+                JOptionPane.showMessageDialog(null, "Huesped Modificado");
          
-         }
-       
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(null, " AVISO ");
+    }
     }//GEN-LAST:event_BeditarActionPerformed
 
     private void BeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeliminarActionPerformed
      
-       
+           huesped huespedX=new huesped();
+         huespedData nuevoH= new huespedData();
+         boolean estados=false;
+         
+          huespedX.setDni(Integer.parseInt(TxDni.getText()));
+            huespedX.setEstado(Cestado.isSelected()==false);
+      
+                 
+            //nuevoH.eliminarhuesped(estados);
+
+        //huespedA.setEstado(false);
     
     }//GEN-LAST:event_BeliminarActionPerformed
 
