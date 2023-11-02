@@ -19,8 +19,10 @@ public class Menu extends javax.swing.JFrame {
         alta = new javax.swing.JMenuItem();
         lista = new javax.swing.JMenuItem();
         Mhabitaciones = new javax.swing.JMenu();
+        tipoH = new javax.swing.JMenuItem();
         altaH = new javax.swing.JMenuItem();
         verH = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         Mreserva = new javax.swing.JMenu();
         cargarR = new javax.swing.JMenuItem();
         buscarR = new javax.swing.JMenuItem();
@@ -33,16 +35,16 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 509, Short.MAX_VALUE)
         );
 
         Mhuesped.setText("Huesped");
 
-        alta.setText("alta");
+        alta.setText("alta / baja / modificar");
         alta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 altaActionPerformed(evt);
@@ -50,12 +52,25 @@ public class Menu extends javax.swing.JFrame {
         });
         Mhuesped.add(alta);
 
-        lista.setText("lista");
+        lista.setText("mostrar listado");
+        lista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaActionPerformed(evt);
+            }
+        });
         Mhuesped.add(lista);
 
         jMenuBar1.add(Mhuesped);
 
         Mhabitaciones.setText("Habitaciones");
+
+        tipoH.setText("crear tipo");
+        tipoH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoHActionPerformed(evt);
+            }
+        });
+        Mhabitaciones.add(tipoH);
 
         altaH.setText("alta");
         altaH.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +88,14 @@ public class Menu extends javax.swing.JFrame {
         });
         Mhabitaciones.add(verH);
 
+        jMenuItem1.setText("modificar / eliminar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        Mhabitaciones.add(jMenuItem1);
+
         jMenuBar1.add(Mhabitaciones);
 
         Mreserva.setText("Reserva");
@@ -85,7 +108,7 @@ public class Menu extends javax.swing.JFrame {
         });
         Mreserva.add(cargarR);
 
-        buscarR.setText("buscar");
+        buscarR.setText("buscar eliminar");
         buscarR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarRActionPerformed(evt);
@@ -165,6 +188,36 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.moveToFront(vr);
     }//GEN-LAST:event_buscarRActionPerformed
 
+    private void tipoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoHActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        tipodeHab tipoHab = new tipodeHab();
+       
+        tipoHab.setVisible(true);
+        Escritorio.add(tipoHab);
+        Escritorio.moveToFront(tipoHab);
+    }//GEN-LAST:event_tipoHActionPerformed
+
+    private void listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        ListarHuespedes li = new ListarHuespedes();
+       
+        li.setVisible(true);
+        Escritorio.add(li);
+        Escritorio.moveToFront(li);
+    }//GEN-LAST:event_listaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       Escritorio.removeAll();
+        Escritorio.repaint();
+        TipoHabVer tp = new TipoHabVer();
+       
+        tp.setVisible(true);
+        Escritorio.add(tp);
+        Escritorio.moveToFront(tp);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,7 +264,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem buscarR;
     private javax.swing.JMenuItem cargarR;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem lista;
+    private javax.swing.JMenuItem tipoH;
     private javax.swing.JMenuItem usuarios;
     private javax.swing.JMenuItem verH;
     // End of variables declaration//GEN-END:variables

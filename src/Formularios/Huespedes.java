@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
  * @author FacuPro
  */
 public class Huespedes extends javax.swing.JInternalFrame {
+    huesped huesped;
         int id,estado;
        
     public Huespedes() {
@@ -71,7 +72,7 @@ public class Huespedes extends javax.swing.JInternalFrame {
             }
         });
 
-        Beditar.setText("Editar    ");
+        Beditar.setText("Modificar");
         Beditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BeditarActionPerformed(evt);
@@ -144,7 +145,7 @@ public class Huespedes extends javax.swing.JInternalFrame {
                                 .addComponent(Bguardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Beditar)
-                                .addGap(32, 32, 32)))
+                                .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -236,7 +237,9 @@ public class Huespedes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BbuscarActionPerformed
-         huesped huespedX=new huesped();
+        // BOTON BUSCAR 
+        
+        huesped huespedX=new huesped();
          huespedData nuevoH= new huespedData();
       try{
          Integer dni=Integer.parseInt(TxDni.getText());
@@ -266,59 +269,38 @@ public class Huespedes extends javax.swing.JInternalFrame {
          huesped huespedA=new huesped();
          huespedData datosH= new huespedData();
     try{     
-        
-        Integer auxid= huespedA.getIdHuesped();
-        id= auxid;
+     
         Integer dni = Integer.parseInt(TxDni.getText());
          String nom = TxApellidoynom.getText();
          String dom=TxDomicilio.getText();
          String mail=TxCorreo.getText();
          String cel=TxCelular.getText();
-            if (nom.isEmpty()|| dom.isEmpty()||mail.isEmpty()||cel.isEmpty()) {
+           if (nom.isEmpty()|| dom.isEmpty()||mail.isEmpty()||cel.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no deje campos vacios ");
             }
          Boolean estado=Cestado.isSelected();
-           
-                huespedA.setIdHuesped(id);
-                huespedA.setDni(dni);
-                huespedA.setApellidoynom(nom);
-                huespedA.setDireccion(dom);
-                huespedA.setCorreo(mail);
-                huespedA.setCelular(cel);
-                //huespedA.setEstado(estado);    
-                datosH.modificarhuesped(huespedA);
-                System.out.println("huespedA"+huespedA);
-//            if(huespedA==null){
-                //datosH.guardarHuesped(huespedA);
-//            }else{ 
-//                huespedA.setIdHuesped(id);
-//                huespedA.setDni(dni);
-//                huespedA.setApellidoynom(nom);
-//                huespedA.setDireccion(dom);
-//                huespedA.setCorreo(mail);
-//                huespedA.setCelular(cel);
-                //huespedA.setEstado(estado);
-                //datosH.modificarhuesped(huespedA); 
-                JOptionPane.showMessageDialog(null, "Huesped Modificado");
+         huespedA=datosH.buscarporDni(dni);
+         id=huespedA.getIdHuesped();
+         huesped=new huesped(id,Integer.parseInt(TxDni.getText()),TxApellidoynom.getText(),TxDomicilio.getText(),TxCorreo.getText(),TxCelular.getText(),Cestado.isSelected());
+            datosH.modificarhuesped(huesped);
+            JOptionPane.showMessageDialog(null, "Huesped Modificado");
          
     }catch(NumberFormatException ex){
         JOptionPane.showMessageDialog(null, " AVISO ");
     }
     }//GEN-LAST:event_BeditarActionPerformed
-
+ 
     private void BeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeliminarActionPerformed
      
-           huesped huespedX=new huesped();
+           
+        
+         huesped huespedX=new huesped();
          huespedData nuevoH= new huespedData();
-         boolean estados=false;
-         
-          huespedX.setDni(Integer.parseInt(TxDni.getText()));
-            huespedX.setEstado(Cestado.isSelected()==false);
-      
-                 
-            //nuevoH.eliminarhuesped(estados);
-
-        //huespedA.setEstado(false);
+         Integer dni = Integer.parseInt(TxDni.getText());
+         huespedX=nuevoH.buscarporDni(dni);
+         nuevoH.eliminarhuesped(huespedX.getIdHuesped());
+        
+     
     
     }//GEN-LAST:event_BeliminarActionPerformed
 

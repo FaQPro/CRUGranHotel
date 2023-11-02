@@ -89,11 +89,11 @@ public class huespedData {
              ps=con.prepareStatement(sql);
              rs=ps.executeQuery();
             while (rs.next()){
-                System.out.println("id:"+rs.getInt(1));
-                System.out.println("DNI:"+rs.getInt(2));
-                System.out.println("Apellido y nombre:"+rs.getString(3));
-                System.out.println("Domicilio:"+rs.getString(4));
-                System.out.println("Correo:"+rs.getString(5));
+                System.out.println("idHuesped"+rs.getInt(1));
+                System.out.println("Dni"+rs.getInt(2));
+                System.out.println("Apellidoynom"+rs.getString(3));
+                System.out.println("Direccion"+rs.getString(4));
+                System.out.println("Correo"+rs.getString(5));
                 System.out.println("Celular"+rs.getString(6));
                 System.out.println("Estado:"+rs.getBoolean(7));
                 
@@ -135,7 +135,7 @@ public class huespedData {
         
         try {
             con.prepareStatement(sql);
-            ps.setBoolean(7, false);
+            ps.setBoolean(1, estado);
             
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -173,7 +173,7 @@ public class huespedData {
             }else {
             JOptionPane.showMessageDialog(null, "No existe ese huesped ");
             ps.close();
-            return null;
+           
              
             } 
             
@@ -190,7 +190,7 @@ public class huespedData {
         try {
             
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(0, idHuesped );
+            ps.setInt(1, idHuesped );
             ResultSet rs=ps.executeQuery();
              if (rs.next()) {
                
@@ -253,34 +253,28 @@ public class huespedData {
 */
     public ArrayList<huesped>listarhuesped(){
             ArrayList<huesped>registrados =new ArrayList<>();
-            String sql ="SELECT * FROM huesped";
-           
-             
+            String sql ="SELECT * FROM huesped";  
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
             while (rs.next()){
                 huesped huesped=new huesped();
-//                huesped.setIdHuesped(rs.getInt("idHuesped"));
+                huesped.setIdHuesped(rs.getInt("idHuesped"));
                 huesped.setDni(rs.getInt("Dni"));
                 huesped.setApellidoynom(rs.getString("Apellidoynom"));
                 huesped.setDireccion(rs.getString("Direccion"));
                 huesped.setCorreo(rs.getString("Correo"));
                 huesped.setCelular(rs.getString("Celular"));
-//                huesped.setEstado(rs.getBoolean("Estado"));
-                registrados.add(huesped);
-                //SOUT DE PRUEBA
-                  
+                huesped.setEstado(rs.getBoolean("Estado"));
+                registrados.add(huesped); 
             }
-//             System.out.println(""+registrados);
-             
-           
+
             return registrados;
             
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "Error en conexion a Base de Datos al listar huesped");
           
-          return registrados;
+          return null;
         }
             
         } 

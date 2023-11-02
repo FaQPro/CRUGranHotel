@@ -26,19 +26,20 @@ public class habitacionData {
         String sql="INSERT INTO habitacion (Numero, TipoHabitacion, Piso, Estado) VALUES(?,?,?,?)";
         
         try {
-            PreparedStatement ps=con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,habit.getNumero());
+            PreparedStatement ps=con.prepareStatement(sql);
+            
+            ps.setInt(1, habit.getNumero());
             ps.setInt(2,habit.getTipohabitacion().getCodigo());
             ps.setInt(3,habit.getPiso());
             ps.setBoolean(4,habit.isEstado());
-            ps.executeUpdate();
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            int exito= ps.executeUpdate();
+            //ResultSet rs = ps.executeQuery();
+            if(exito==1){
+               // habit.setNumero(rs.getInt());
                 JOptionPane.showMessageDialog(null, "Se ha guardado la habitacion nro "+habit.getNumero());
-                habit.setNumero(rs.getInt(1));
+                
             }
-            
-            
+  
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al guardar habitacion ");
             

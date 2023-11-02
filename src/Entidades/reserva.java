@@ -3,6 +3,7 @@
 package Entidades;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 
 /**
@@ -14,8 +15,8 @@ public class reserva {
     private int idReserva;
     private habitacion nrohabitacion;
     private huesped idHuesped;
-    private Date FechaEntrada;
-    private Date FechaSalida;
+    private LocalDate FechaEntrada;
+    private LocalDate FechaSalida;
     private int Personas;
     private double ImporteTotal;
     private boolean Estado;
@@ -24,7 +25,7 @@ public class reserva {
         public reserva() {
     }
 
-    public reserva(habitacion nrohabitacion, huesped idHuesped, Date FechaEntrada, Date FechaSalida, int personas, double ImporteTotal, boolean estado) {
+    public reserva(habitacion nrohabitacion, huesped idHuesped, LocalDate FechaEntrada, LocalDate FechaSalida, int personas, double ImporteTotal, boolean estado) {
         this.nrohabitacion = nrohabitacion;
         this.idHuesped = idHuesped;
         this.FechaEntrada = FechaEntrada;
@@ -34,7 +35,7 @@ public class reserva {
         this.Estado = estado;
     }
 
-    public reserva(int idReserva, habitacion nrohabitacion, huesped idHuesped, Date FechaEntrada, Date FechaSalida, int personas, double ImporteTotal, boolean estado) {
+    public reserva(int idReserva, habitacion nrohabitacion, huesped idHuesped, LocalDate FechaEntrada, LocalDate FechaSalida, int personas, double ImporteTotal, boolean estado) {
         this.idReserva = idReserva;
         this.nrohabitacion = nrohabitacion;
         this.idHuesped = idHuesped;
@@ -69,19 +70,19 @@ public class reserva {
         this.idHuesped = idHuesped;
     }
 
-    public Date getFechaEntrada() {
+    public LocalDate getFechaEntrada() {
         return FechaEntrada;
     }
 
-    public void setFechaEntrada(Date FechaEntrada) {
+    public void setFechaEntrada(LocalDate FechaEntrada) {
         this.FechaEntrada = FechaEntrada;
     }
 
-    public Date getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return FechaSalida;
     }
 
-    public void setFechaSalida(Date FechaSalida) {
+    public void setFechaSalida(LocalDate FechaSalida) {
         this.FechaSalida = FechaSalida;
     }
 

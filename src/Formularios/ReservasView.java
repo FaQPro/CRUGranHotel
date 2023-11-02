@@ -3,7 +3,11 @@ package Formularios;
 
 import AccesoAdatos.*;
 import Entidades.*;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ReservasView extends javax.swing.JInternalFrame {
     public static huesped guardarH;
-   
     public static double precio;
     public static double precioFinalF;
     DefaultTableModel formatoTablaTipos=new DefaultTableModel();
@@ -38,6 +41,10 @@ public class ReservasView extends javax.swing.JInternalFrame {
   
     public ReservasView() {
         initComponents();
+        ((JTextFieldDateEditor)fechaIn.getDateEditor()).setEditable(false);
+        ((JTextFieldDateEditor)fechaOut.getDateEditor()).setEditable(false);
+        LocalDate fechaMin =LocalDate.of(2023, Month.NOVEMBER, 1);
+        LocalDate fechaMax= LocalDate.of(2025, Month.MARCH, 1);
         inicializoTablas();
         CargarDatostipo();
         
@@ -114,10 +121,7 @@ public void inicializoTablas(){
         BguardarR = new javax.swing.JButton();
         Lprecio = new javax.swing.JLabel();
         jNombreH = new javax.swing.JLabel();
-        BuscarH = new javax.swing.JButton();
-        TxdniH = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         Bsalir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -214,21 +218,12 @@ public void inicializoTablas(){
         jNombreH.setFont(new java.awt.Font("Kalinga", 1, 14)); // NOI18N
         jNombreH.setText("Huesped, Nombre ");
 
-        BuscarH.setText("Buscar Huesped");
-        BuscarH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarHActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Calcular Precio");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("DNI Huesped:");
 
         Bsalir.setText("Salir");
         Bsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -276,9 +271,12 @@ public void inicializoTablas(){
                                             .addComponent(jNombreH)
                                             .addComponent(Lprecio)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BguardarR)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Bsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(0, 486, Short.MAX_VALUE)
+                                        .addComponent(Bsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(BguardarR)
+                                .addGap(430, 430, 430)))
                         .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -302,14 +300,6 @@ public void inicializoTablas(){
                                     .addComponent(jLabel8))
                                 .addGap(0, 160, Short.MAX_VALUE)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel3)
-                .addGap(44, 44, 44)
-                .addComponent(TxdniH, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(BuscarH, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,19 +330,14 @@ public void inicializoTablas(){
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lprecio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BagregarH)
                     .addComponent(jNombreH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BuscarH)
-                    .addComponent(TxdniH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BguardarR)
-                    .addComponent(Bsalir))
-                .addGap(17, 17, 17))
+                .addGap(56, 56, 56)
+                .addComponent(Bsalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BguardarR)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -364,18 +349,16 @@ public void inicializoTablas(){
         vh.setVisible(true);
         Menu.Escritorio.add(vh);
         Menu.Escritorio.moveToFront(vh);
-        
-        
-        
-    
-        
      
     }//GEN-LAST:event_BagregarHActionPerformed
 
     private void BguardarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BguardarRActionPerformed
         //OBTENGO FECHAS
-        java.sql.Date fechaChekIn = new java.sql.Date (fechaIn.getDate().getTime());
-        java.sql.Date fechaChekOut = new java.sql.Date (fechaOut.getDate().getTime());
+        // f1 = jDateChooserFecha1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaChekIn = fechaIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        
+        LocalDate fechaChekOut = fechaOut.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         //OBTENGO DIAS PERSONAS Y PRECIO FINAL
         int dias,personas;
@@ -429,12 +412,6 @@ public void inicializoTablas(){
         
     }//GEN-LAST:event_TbHabitacionesMouseClicked
 
-    private void BuscarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarHActionPerformed
-
-       // huespedR=hd.buscarporDni(guardarH.getDni());
-
-    }//GEN-LAST:event_BuscarHActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //calculo precio final y lo muestro en label
         int dias;
@@ -454,19 +431,16 @@ public void inicializoTablas(){
     private javax.swing.JButton BagregarH;
     private javax.swing.JButton BguardarR;
     private javax.swing.JButton Bsalir;
-    private javax.swing.JButton BuscarH;
     private javax.swing.JLabel Lprecio;
     private javax.swing.JSpinner Sdias;
     private javax.swing.JSpinner Spersonas;
     private javax.swing.JTable TbHabitaciones;
     public static javax.swing.JTable TbTipohabitacion;
-    private javax.swing.JTextField TxdniH;
     private com.toedter.calendar.JDateChooser fechaIn;
     private com.toedter.calendar.JDateChooser fechaOut;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

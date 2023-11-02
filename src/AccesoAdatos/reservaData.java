@@ -4,6 +4,7 @@ package AccesoAdatos;
 
 import Entidades.huesped;
 import Entidades.reserva;
+import Entidades.tipodehabitacion;
 import java.sql.Connection;
 import java.sql.Date;
 
@@ -11,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -37,9 +40,9 @@ public class reservaData {
         
         ps.setInt(2, reservaNueva.getIdHuesped().getIdHuesped());
      
-        ps.setDate(3,reservaNueva.getFechaEntrada());
+        ps.setDate(3, Date.valueOf(reservaNueva.getFechaEntrada()));
   
-        ps.setDate(4, reservaNueva.getFechaSalida());
+        ps.setDate(4, Date.valueOf(reservaNueva.getFechaSalida()));
      
         ps.setInt (5, reservaNueva.getPersonas());
        
@@ -61,6 +64,22 @@ public class reservaData {
         }
 }
 
+    public void eliminar(int id, boolean es){
+        if(es){
+            try (PreparedStatement ps = con.prepareStatement("DELETE FROM `reserva` WHERE idReserva="+id)) {
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Error"+ex);
+            }
+        }else{
+            try (PreparedStatement ps = con.prepareStatement("UPDATE `reserva` SET `estado`=0 WHERE idReserva="+id)) {
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Eliminada"+ex);
+            }
+        }
+    }
+   
 public boolean verificarDisponible(int numeroHab, LocalDate fechaIng){
    String sql="SELECT * FROM reserva WHERE nrohabitacion=? AND Estado=true AND ? BETWEEN FechaEntrada AND FechaSalida";
    boolean resultado=true;
@@ -118,12 +137,8 @@ public reserva buscarresevaxfecha(LocalDate fecha){
         reserva reserva= new reserva();
         
         try {
-            
-            
             String sql="SELECT * FROM reserva WHERE  idHuesped = ?";
-            
             PreparedStatement ps=con.prepareStatement(sql);
-            
             ps.setInt(1, huesped.getIdHuesped());
             ResultSet rs=ps.executeQuery();
              if(rs.next()){
@@ -139,8 +154,6 @@ public reserva buscarresevaxfecha(LocalDate fecha){
             ps.close();
             return null;
              }
-            
-            
         } catch (SQLException ex) {
             Logger.getLogger(reservaData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -171,7 +184,43 @@ public reserva buscarresevaxfecha(LocalDate fecha){
         
     }  
     
-    
+ public List<reserva> buscarTodos() {
+        List<reserva> rHuespedes = new ArrayList<>();
+        String sql = "SELECT * FROM reserva";
+
+        try (
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();) {
+            while (rs.next()) {
+                reserva rHue = crearReservaHuesped(rs);
+                rHuespedes.add(rHue);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al intentar buscar todas las reservas");
+        }
+        return rHuespedes;
+    }
+ 
+ public reserva crearReservaHuesped(ResultSet rs) throws SQLException {
+        reserva rHuesped = new reserva();
+        habitacionData habR = new habitacionData();
+        huespedData hueR = new huespedData();
+
+        rHuesped.setIdReserva(rs.getInt("idReserva"));
+        rHuesped.setNrohabitacion(habR.buscarHabitacion(rs.getInt("nrohabitacion")));
+        rHuesped.setIdHuesped(hueR.buscarporid(rs.getInt("idHuesped")));
+        rHuesped.setFechaEntrada(rs.getDate("FechaEntrada").toLocalDate());
+        rHuesped.setFechaSalida(rs.getDate("FechaSalida").toLocalDate());
+        rHuesped.setPersonas(rs.getInt("Personas"));
+        
+        rHuesped.setImporteTotal(rs.getDouble("ImporteTotal"));
+        
+        rHuesped.setEstado(rs.getBoolean("Estado"));
+
+        return rHuesped;
+
+    }
+ 
 }
 
 
