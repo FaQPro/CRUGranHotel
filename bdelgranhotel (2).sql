@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2023 a las 03:19:10
+-- Tiempo de generación: 02-11-2023 a las 23:49:56
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -39,42 +39,16 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`Numero`, `Tipohabitacion`, `Piso`, `Estado`) VALUES
-(98, 2, 2, 1),
-(101, 6, 1, 1),
-(102, 1, 1, 1),
-(103, 1, 1, 1),
-(104, 2, 1, 1),
-(105, 4, 1, 1),
-(106, 5, 1, 1),
-(107, 5, 1, 1),
-(108, 5, 1, 1),
-(109, 6, 1, 0),
-(110, 1, 5, 1),
-(200, 3, 5, 1),
-(201, 2, 2, 1),
-(202, 2, 2, 1),
-(203, 3, 2, 1),
-(204, 4, 2, 1),
-(205, 5, 2, 1),
-(206, 5, 2, 1),
-(207, 5, 2, 1),
-(208, 6, 2, 1),
-(209, 6, 2, 1),
-(303, 5, 3, 1),
-(306, 6, 3, 1),
-(401, 1, 4, 1),
-(402, 1, 4, 1),
-(403, 1, 4, 1),
-(404, 2, 4, 1),
-(405, 2, 4, 1),
-(406, 3, 4, 1),
-(407, 3, 4, 1),
-(408, 4, 4, 1),
-(409, 5, 4, 1),
-(501, 1, 5, 1),
-(502, 2, 5, 1),
-(503, 3, 5, 1),
-(801, 5, 5, 1);
+(2, 3, 2, 1),
+(3, 5, 1, 1),
+(4, 6, 1, 1),
+(5, 7, 1, 1),
+(6, 4, 3, 1),
+(7, 5, 4, 1),
+(8, 7, 5, 0),
+(10, 2, 2, 1),
+(66, 2, 1, 1),
+(105, 3, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -114,19 +88,24 @@ INSERT INTO `huesped` (`idHuesped`, `Dni`, `Apellidoynom`, `Direccion`, `Correo`
 (72, 134031678, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '15469874569', 1),
 (73, 3403, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '1546', 1),
 (74, 35125890, 'rodri', 'ruta', 'ro', '223', 1),
-(75, 35, '34', 'erwe', 'erwe', '654654', 1),
-(76, 35, 'hgjh', '7897', 'h78ihy879', '656', 1),
-(77, 34, '34', 'erwe', 'erwe', '65465', 1),
-(78, 34, '34', 'erwe', 'erwe', '65465', 1),
+(75, 35, '34', 'erwe', 'erwe', '654654', 0),
 (79, 35125891, 'Rodrigo Lang', 'Garay 2233', 'rodri@gmail.com', '2235', 1),
-(80, 33, '34', 'erwe', 'erwe', '65465', 1),
+(80, 33, '34', 'erwe', 'erwe', '65465', 0),
 (81, 45556, 'rodri', 'dfdf41671', 'ffdf45456', '564651', 1),
-(82, 25, '34', 'erwe', 'erwe', '654654', 0),
-(83, 24, '34', 'erwe', 'erwe', '654654', 1),
+(82, 25, 'Luis Crack', 'Av Siempre crack 25', 'crack@luisito', '65465455', 0),
+(83, 24, 'Pedro PicaPiedras', 'erwe65', 'picapie@gmail', '65465489', 0),
 (84, 34031678, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '1546987456', 1),
-(85, 34, 'luis vera', 'av salta 58', 'ere@gmail.com', '65465554', 1),
-(86, 34031685, '', '', '', '', 0),
-(87, 34031678, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '1546987456', 1);
+(85, 34, 'luis vera', 'av salta 59', 'luisi@gmail.com', '65465554', 1),
+(86, 3403665, 'Jose del main', 'Direccion', 'Correo', 'Celular', 0),
+(87, 34031678, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '1546987456', 1),
+(89, 34031678, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '1546987456', 0),
+(90, 25, 'Luis Crack', 'Av Siempre crack 25', 'crack@luisito', '65465455', 0),
+(91, 34031678, 'Morales Facundo', 'Salta', 'facupro@gmail.com', '1546987456', 1),
+(92, 35698, 'Hector', 'erwe', 'erwe', '654654', 1),
+(93, 34, 'luis vera', 'av salta 58', 'luisi@gmail.com', '65465554', 0),
+(94, 32156, 'Vilma Picapiedras', 'prehistoria 154', 'vilma@gm.com', '9814', 1),
+(95, 8617871, 'Roxana Cortez', 'San Luis 85', 'rox@gma', '61878', 0),
+(96, 25, 'Luis Crack', 'Av Siempre crack 25', 'crack@luisito', '65465455', 0);
 
 -- --------------------------------------------------------
 
@@ -150,9 +129,9 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`idReserva`, `nrohabitacion`, `idHuesped`, `FechaEntrada`, `FechaSalida`, `Personas`, `ImporteTotal`, `Estado`) VALUES
-(1, 104, 84, '2023-10-27', '2023-10-29', 2, 36000, 1),
-(2, 102, 85, '2023-10-04', '2023-10-16', 2, 24000, 1),
-(3, 102, 87, '2022-11-02', '2023-10-11', 2, 24000, 1);
+(6, 10, 91, '2023-11-28', '2023-11-30', 2, 10000, 1),
+(8, 3, 93, '2023-11-03', '2023-11-04', 2, 400, 1),
+(9, 6, 96, '2023-11-03', '2023-11-04', 2, 300, 1);
 
 -- --------------------------------------------------------
 
@@ -174,12 +153,13 @@ CREATE TABLE `tipodehabitacion` (
 --
 
 INSERT INTO `tipodehabitacion` (`Codigo`, `Tipo`, `Capacidad`, `Cantidadcamas`, `Tipocamas`, `Precio`) VALUES
-(1, 'Bronce', 1, 1, 'Standar Simple', 12000),
-(2, 'Plata', 1, 1, 'Doble', 18000),
-(3, 'Gold', 1, 1, 'Queen', 21000),
-(4, 'Triple', 3, 3, 'Simple', 25000),
-(5, 'Triple', 3, 2, '1 Simple 1 Queen', 28000),
-(6, 'Suit Lujo', 2, 1, 'King', 40000);
+(2, 'BRONCE2', 1, 1, 'Simple', 100.1),
+(3, 'MEDIUM', 1, 1, 'Doble', 120),
+(4, 'ORO', 1, 1, 'King', 150),
+(5, 'BASIC', 2, 2, 'Simple', 200),
+(6, 'PLATINUM', 2, 2, 'King', 250),
+(7, 'DIAMANTE', 4, 1, 'King Sice ', 300),
+(8, 'ORO', 2, 1, 'KING ', 800);
 
 --
 -- Índices para tablas volcadas
@@ -220,13 +200,19 @@ ALTER TABLE `tipodehabitacion`
 -- AUTO_INCREMENT de la tabla `huesped`
 --
 ALTER TABLE `huesped`
-  MODIFY `idHuesped` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `idHuesped` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idReserva` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `tipodehabitacion`
+--
+ALTER TABLE `tipodehabitacion`
+  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
