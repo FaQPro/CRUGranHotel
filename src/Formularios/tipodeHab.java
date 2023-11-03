@@ -131,7 +131,13 @@ public class tipodeHab extends javax.swing.JInternalFrame {
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_bSalirActionPerformed
-
+        public void limpiarF(){
+//metodo para limpiar el formulario
+    txTipo.setText("");
+    txTipoCama.setText("");
+    txPrecio.setText("");
+   
+}
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
         // BOTON GUARDAR
             tipodehabitacion tipoh=new tipodehabitacion();
@@ -146,7 +152,7 @@ public class tipodeHab extends javax.swing.JInternalFrame {
           
     
           tdhD.guardarTipoHabitacion(tipoh);
-        
+        limpiarF();
     }//GEN-LAST:event_bGuardarActionPerformed
 
 

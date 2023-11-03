@@ -212,6 +212,7 @@ public class Huespedes extends javax.swing.JInternalFrame {
             huespedX.setEstado(Cestado.isSelected()==true);
             
             nuevoH.guardarHuesped(huespedX);
+            limpiarF();
     }//GEN-LAST:event_BguardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -284,7 +285,7 @@ public class Huespedes extends javax.swing.JInternalFrame {
          huesped=new huesped(id,Integer.parseInt(TxDni.getText()),TxApellidoynom.getText(),TxDomicilio.getText(),TxCorreo.getText(),TxCelular.getText(),Cestado.isSelected());
             datosH.modificarhuesped(huesped);
             JOptionPane.showMessageDialog(null, "Huesped Modificado");
-         
+            limpiarF();
     }catch(NumberFormatException ex){
         JOptionPane.showMessageDialog(null, " AVISO ");
     }
@@ -300,7 +301,7 @@ public class Huespedes extends javax.swing.JInternalFrame {
          huespedX=nuevoH.buscarporDni(dni);
          nuevoH.eliminarhuesped(huespedX.getIdHuesped());
         
-     
+         limpiarF();
     
     }//GEN-LAST:event_BeliminarActionPerformed
 
@@ -312,7 +313,20 @@ public class Huespedes extends javax.swing.JInternalFrame {
        this.dispose();
     }//GEN-LAST:event_BsalirActionPerformed
       
+    public void limpiarF(){
+//metodo para limpiar el formulario
+    TxApellidoynom.setText("");
+    TxCelular.setText("");
+    TxDni.setText("");
+    TxCorreo.setText("");
+    TxDomicilio.setText("");
+    Cestado.setSelected(false);
 
+
+
+
+    
+}
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

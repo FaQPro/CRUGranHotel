@@ -97,6 +97,9 @@ public class huesped {
     public String toString() {
         return Apellidoynom;
     }
-    
-    
+
+    public void addItem(String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

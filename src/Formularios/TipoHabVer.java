@@ -268,13 +268,25 @@ public void inicializoTablas(){
             
             ps1.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Editado con exito");
-            
+             limpiarF();
         } catch (Exception e) {
             System.err.println("ERROR"+e);
             
         }
     }//GEN-LAST:event_bEditarActionPerformed
-
+        public void limpiarF(){
+//metodo para limpiar el formulario
+    txcodigo.setText("");
+    txtipo.setText("");
+    txcapacidad.setText("");
+    txcamacant.setText("");
+    txtiposcama.setText("");
+    txtiposcama.setText("");
+    txprecio.setText("");
+    
+    
+   
+}
     private void belimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_belimActionPerformed
        PreparedStatement ps1 = null;
         
@@ -285,6 +297,7 @@ public void inicializoTablas(){
             
             ps1.executeUpdate();
             JOptionPane.showMessageDialog(null, "Habitacion Eliminada con exito");
+             limpiarF();
             
         } catch (Exception e) {
             System.err.println("ERROR"+e);
